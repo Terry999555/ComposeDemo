@@ -13,17 +13,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.compose.demo.data.ChatMessage
 import com.compose.demo.data.mockChats
+import com.compose.demo.ui.theme.ComposeDemoTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChatDetailScreen(
     chatId: Long,
-    onBack: () -> Unit
+    onBack: () -> Unit,
 ) {
     val chat = mockChats.find { it.id == chatId }
     val listState = rememberLazyListState()
@@ -149,13 +151,13 @@ private fun MessageBubble(msg: ChatMessage) {
                     bottomEnd = if (msg.isMe) 4.dp else 16.dp
                 ),
                 color = if (msg.isMe) MaterialTheme.colorScheme.primary
-                        else MaterialTheme.colorScheme.surfaceVariant
+                else MaterialTheme.colorScheme.surfaceVariant
             ) {
                 Text(
                     msg.content,
                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                     color = if (msg.isMe) MaterialTheme.colorScheme.onPrimary
-                            else MaterialTheme.colorScheme.onSurfaceVariant
+                    else MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }
@@ -172,5 +174,13 @@ private fun MessageBubble(msg: ChatMessage) {
                 Text("😎", fontSize = 18.sp)
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ChatDetailScreenPreview() {
+    ComposeDemoTheme {
+        ChatDetailScreen(2, {})
     }
 }
