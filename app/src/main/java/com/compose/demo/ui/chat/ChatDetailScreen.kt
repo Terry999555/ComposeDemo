@@ -1,5 +1,6 @@
 package com.compose.demo.ui.chat
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,7 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -20,6 +21,7 @@ import com.compose.demo.data.ChatMessage
 import com.compose.demo.data.mockChats
 import com.compose.demo.ui.theme.ComposeDemoTheme
 import kotlinx.coroutines.launch
+import com.compose.demo.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -90,7 +92,11 @@ fun ChatDetailScreen(
                             }
                         }
                     ) {
-                        Text("📤", fontSize = 22.sp)
+                        Image(
+                            painterResource(R.mipmap.ic_launcher),
+                            contentDescription = "头像",
+                            modifier = Modifier.size(22.dp)
+                        )
                     }
                 }
             }
@@ -126,7 +132,11 @@ private fun MessageBubble(msg: ChatMessage) {
                     .background(MaterialTheme.colorScheme.primaryContainer),
                 contentAlignment = Alignment.Center
             ) {
-                Text("👤", fontSize = 18.sp)
+                Image(
+                    painterResource(R.mipmap.icon_avatar),
+                    contentDescription = "头像",
+                    modifier = Modifier.size(18.dp)
+                )
             }
             Spacer(modifier = Modifier.width(8.dp))
         }
@@ -171,7 +181,11 @@ private fun MessageBubble(msg: ChatMessage) {
                     .background(MaterialTheme.colorScheme.primary),
                 contentAlignment = Alignment.Center
             ) {
-                Text("😎", fontSize = 18.sp)
+                Image(
+                    painterResource(R.mipmap.ic_launcher),
+                    contentDescription = "表情",
+                    modifier = Modifier.size(18.dp)
+                )
             }
         }
     }
